@@ -50,8 +50,8 @@ function Nav() {
           <span style={{ fontSize: 18 }}>🐴</span>
           <span style={{ fontFamily: "var(--serif)", fontSize: 16, fontWeight: 600, color: "var(--primary)", letterSpacing: "-0.01em" }}>Agentic POA</span>
         </a>
-        <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          {[["Vision", "#vision"], ["Spec", "#spec"], ["Scenarios", "#scenarios"]].map(([t, h]) => (
+        <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 28 }}>
+          {[["Spec", "#spec"], ["Examples", "#scenarios"], ["Vision", "#vision"]].map(([t, h]) => (
             <a key={t} href={h} style={{ fontSize: 14, color: "var(--secondary)", textDecoration: "none", fontWeight: 450 }}>{t}</a>
           ))}
           <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener noreferrer" style={{
@@ -154,29 +154,29 @@ function CodeBlock() {
 
 function ProblemSection() {
   return (
-    <section id="problem" style={{ paddingTop: 80, paddingBottom: 80 }}>
+    <section id="problem" style={{ paddingTop: 100, paddingBottom: 80 }}>
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 32px" }}>
         <Reveal>
           <div style={{ maxWidth: 600 }}>
             <span style={{ fontSize: 13, fontWeight: 550, color: "var(--accent)", letterSpacing: "0.04em" }}>THE PROBLEM</span>
             <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.025em", color: "var(--primary)", marginTop: 12 }}>
-              Today's "authorization model" is a prayer.
+              AI agents can do remarkable things. Except prove they're allowed&nbsp;to.
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--secondary)", marginTop: 20 }}>
-              AI agents are accessing email, browsing the web, and negotiating on behalf of humans right now. The authorization framework for all of this is: share your password and hope for the best.
+              Your AI can pass the bar exam, but it can't check your kid's pediatrician appointment. Today, your options are to hand over your password, watch it do everything manually, wait for services to add APIs, or just not use agents at all.
             </p>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <div style={{
+          <div className="responsive-grid-4" style={{
             display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1,
             marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden",
           }}>
             {[
-              ["Share your password", "The Clawdbot approach. Give the agent your entire digital life and trust it not to email the wrong person."],
-              ["Supervise everything", "You watch every action in real time. Congratulations — you've automated nothing."],
-              ["Wait for APIs", "Your utility company will add OAuth right after they migrate off Internet Explorer."],
-              ["Don't use agents", "The safe option. Also the one that means you're still logging into six portals manually."],
+              ["Share your password", "Hope the AI doesn't get phished, leak it, or hallucinate its way into your savings."],
+              ["Supervise everything", "Defeating the purpose. You're a human clipboard."],
+              ["Wait for APIs", "Your utility company will add OAuth after they migrate off IE6."],
+              ["Don't use agents", "The default. Not because it's good."],
             ].map(([title, desc], i) => (
               <div key={i} style={{ padding: "28px 24px", background: "var(--bg)" }}>
                 <h3 style={{ fontSize: 15, fontWeight: 600, color: "var(--primary)", lineHeight: 1.3 }}>{title}</h3>
@@ -200,7 +200,7 @@ function HowSection() {
             Built on standards that already exist.
           </h2>
         </Reveal>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden" }}>
+        <div className="responsive-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden" }}>
           {[
             ["01", "Define authorization", "Scope, constraints, rules, expiration. What the agent can access and what it can't. A YAML file, not a 40-page legal document."],
             ["02", "Token is issued", "The authorization becomes a signed JWT — cryptographically verifiable, tamper-proof, portable. Optionally packaged as a W3C Verifiable Credential."],
@@ -214,7 +214,7 @@ function HowSection() {
           ))}
         </div>
         <Reveal delay={0.1}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, marginTop: 1, background: "#e0d9cc", borderRadius: "0 0 12px 12px", overflow: "hidden" }}>
+          <div className="responsive-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, marginTop: 1, background: "#e0d9cc", borderRadius: "0 0 12px 12px", overflow: "hidden" }}>
             {[
               ["API-based", "Extends OAuth 2.1 — the APOA token constrains scope, adds agent identity verification, delegation chain tracking, and audit."],
               ["Browser-based", "Secure credential injection for services without APIs. Encrypted vault → browser form. The AI model never touches your password."],
@@ -256,7 +256,7 @@ function IntegrationSection() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <div style={{
+          <div className="responsive-grid-2" style={{
             display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1,
             marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden",
           }}>
@@ -350,7 +350,7 @@ function VisionSection() {
               "Buy me a house."
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--secondary)", marginTop: 20, maxWidth: 560 }}>
-              The next frontier is an agent that can negotiate a home purchase, handle the paperwork, and close the deal — with formal authority, a complete audit trail, and a kill switch you control at every step.
+              An AI agent already bought someone a car. The next step is an agent that can negotiate a home purchase, handle the paperwork, and close the deal — with formal authority, a complete audit trail, and a kill switch you control at every step.
             </p>
           </div>
         </Reveal>
@@ -398,9 +398,7 @@ function ComparisonSection() {
   const cols = [
     { name: "APOA", vals: [1,1,1,1,1,1,1,1] },
     { name: "OAuth", vals: [1,1,1,0,0,0,0,0] },
-    { name: "VCs", vals: [0,1,0,0,0,0,0,0] },
-    { name: "ZCAP-LD", vals: [1,1,1,0,0,1,0,0] },
-    { name: "Agent frameworks", vals: [0,0,0,0,1,0,0,0] },
+    { name: "Browser agents", vals: [0,0,0,0,1,0,0,0] },
     { name: "Passwords", vals: [0,0,0,0,1,0,0,0] },
   ];
   return (
@@ -409,17 +407,12 @@ function ComparisonSection() {
         <Reveal>
           <span style={{ fontSize: 13, fontWeight: 550, color: "var(--accent)", letterSpacing: "0.04em" }}>COMPARISON</span>
           <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(28px, 3.5vw, 40px)", fontWeight: 400, lineHeight: 1.15, letterSpacing: "-0.02em", color: "var(--primary)", marginTop: 12, maxWidth: 480 }}>
-            The landscape today.
+            The current state of the art.
           </h2>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--tertiary)", marginTop: 12, maxWidth: 560 }}>
-            VCs handle identity, not authorization. ZCAP-LD handles delegation but not browser services. Agent frameworks like Clawdbot have zero authorization infrastructure. APOA builds on what works and fills the gaps.
-          </p>
         </Reveal>
         <Reveal delay={0.1}>
           <div style={{ marginTop: 36, overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
               <thead>
                 <tr style={{ borderBottom: "2px solid #e0d9cc" }}>
                   <th style={{ textAlign: "left", padding: "12px 0", fontSize: 12, fontWeight: 600, color: "var(--tertiary)", letterSpacing: "0.04em", textTransform: "uppercase" }}>Feature</th>
@@ -509,7 +502,7 @@ function Footer() {
             ))}
           </div>
         </div>
-        <p style={{ fontSize: 11, color: "#c4bdb0", marginTop: 24 }}>Apache 2.0 · agenticpoa.com</p>
+        <p style={{ fontSize: 11, color: "#c4bdb0", marginTop: 24 }}>Apache 2.0 · agenticpoa.com · agenticpowerofattorney.com</p>
       </div>
     </footer>
   );
@@ -539,20 +532,23 @@ export default function App() {
         ::selection { background: #a35810; color: #fff; }
         html { scroll-behavior: smooth; }
         @media (max-width: 768px) {
-          .four-grid { grid-template-columns: 1fr 1fr !important; }
-          .three-grid { grid-template-columns: 1fr !important; }
-          .two-grid { grid-template-columns: 1fr !important; }
+          .nav-links a:not(:last-child) { display: none !important; }
+          .responsive-grid-4 { grid-template-columns: 1fr 1fr !important; }
+          .responsive-grid-3 { grid-template-columns: 1fr !important; }
+          .responsive-grid-2 { grid-template-columns: 1fr !important; }
+          table { font-size: 12px !important; }
+          table th, table td { padding: 8px 6px !important; }
         }
       `}</style>
       <Nav />
       <main>
         <Hero />
-        <VisionSection />
         <CodeBlock />
         <ProblemSection />
         <HowSection />
         <IntegrationSection />
         <ScenariosSection />
+        <VisionSection />
         <ComparisonSection />
         <CTASection />
         <Footer />
