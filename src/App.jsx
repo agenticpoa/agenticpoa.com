@@ -51,7 +51,7 @@ function Nav() {
           <span style={{ fontFamily: "var(--serif)", fontSize: 16, fontWeight: 600, color: "var(--primary)", letterSpacing: "-0.01em" }}>Agentic POA</span>
         </a>
         <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          {[["Spec", "#spec"], ["Examples", "#scenarios"], ["Vision", "#vision"]].map(([t, h]) => (
+          {[["Spec", "#spec"], ["Examples", "#scenarios"], ["Stack", "#stack"], ["Vision", "#vision"]].map(([t, h]) => (
             <a key={t} href={h} style={{ fontSize: 14, color: "var(--secondary)", textDecoration: "none", fontWeight: 450 }}>{t}</a>
           ))}
           <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener noreferrer" style={{
@@ -113,6 +113,14 @@ function Hero() {
 }
 
 function CodeBlock() {
+  const [tab, setTab] = useState(0);
+  const preStyle = {
+    margin: 0, padding: "20px 24px", fontSize: 13, lineHeight: 1.8,
+    fontFamily: "var(--mono)", color: "#a8a098", overflowX: "auto",
+  };
+  const str = { color: "#c4956a" };
+  const cmt = { color: "#5a5550" };
+  const bool = { color: "#8aab7a" };
   return (
     <Reveal>
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 32px" }}>
@@ -124,28 +132,56 @@ function CodeBlock() {
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
-            <span style={{ marginLeft: 8, fontSize: 11, color: "#7a7068", fontFamily: "var(--mono)" }}>authorization.yaml</span>
+            <div style={{ marginLeft: 8, display: "flex", gap: 16 }}>
+              {["authorization.yaml", "typescript.ts"].map((name, i) => (
+                <button key={i} onClick={() => setTab(i)} style={{
+                  background: "transparent", border: "none", cursor: "pointer", padding: 0,
+                  fontSize: 11, fontFamily: "var(--mono)",
+                  color: tab === i ? "#c4956a" : "#7a7068",
+                  transition: "color 0.15s ease",
+                }}>{name}</button>
+              ))}
+            </div>
           </div>
-          <pre style={{
-            margin: 0, padding: "20px 24px", fontSize: 13, lineHeight: 1.8,
-            fontFamily: "var(--mono)", color: "#a8a098", overflowX: "auto",
-          }}>
+          {tab === 0 ? (
+            <pre style={preStyle}>
 {`authorization:
-  principal: `}<span style={{color:"#c4956a"}}>"You"</span>{`
-  agent: `}<span style={{color:"#c4956a"}}>"Your AI Assistant"</span>{`
-  service: `}<span style={{color:"#c4956a"}}>"mychart.com"</span>{`
+  principal: `}<span style={str}>"You"</span>{`
+  agent: `}<span style={str}>"Your AI Assistant"</span>{`
+  service: `}<span style={str}>"mychart.com"</span>{`
   scope:
-    - `}<span style={{color:"#c4956a"}}>"appointments:read"</span>{`
-    - `}<span style={{color:"#c4956a"}}>"prescriptions:refill_status:read"</span>{`
+    - `}<span style={str}>"appointments:read"</span>{`
+    - `}<span style={str}>"prescriptions:refill_status:read"</span>{`
   constraints:
-    signing: `}<span style={{color:"#8aab7a"}}>false</span>{`       `}<span style={{color:"#5a5550"}}>{"# never signs anything"}</span>{`
-    data_export: `}<span style={{color:"#8aab7a"}}>false</span>{`    `}<span style={{color:"#5a5550"}}>{"# data stays on-platform"}</span>{`
+    signing: `}<span style={bool}>false</span>{`       `}<span style={cmt}>{"# never signs anything"}</span>{`
+    data_export: `}<span style={bool}>false</span>{`    `}<span style={cmt}>{"# data stays on-platform"}</span>{`
   rules:
-    - `}<span style={{color:"#c4956a"}}>"Alert me 48hrs before any appointment"</span>{`
-    - `}<span style={{color:"#c4956a"}}>"Never respond to messages on my behalf"</span>{`
-  expires: `}<span style={{color:"#c4956a"}}>"2026-09-01"</span>{`
-  revocable: `}<span style={{color:"#8aab7a"}}>true</span>
-          </pre>
+    - `}<span style={str}>"Alert me 48hrs before any appointment"</span>{`
+    - `}<span style={str}>"Never respond to messages on my behalf"</span>{`
+  expires: `}<span style={str}>"2026-09-01"</span>{`
+  revocable: `}<span style={bool}>true</span>
+            </pre>
+          ) : (
+            <pre style={preStyle}>
+{`import { createToken, checkScope, generateKeyPair } from `}<span style={str}>'@apoa/core'</span>{`;
+
+const keys = await generateKeyPair();
+
+const token = await createToken({
+  principal: { id: `}<span style={str}>"did:apoa:you"</span>{` },
+  agent: { id: `}<span style={str}>"did:apoa:your-agent"</span>{`, name: `}<span style={str}>"Your AI Assistant"</span>{` },
+  services: [{
+    service: `}<span style={str}>"mychart.com"</span>{`,
+    scopes: [`}<span style={str}>"appointments:read"</span>{`],
+    accessMode: `}<span style={str}>"browser"</span>{`,
+  }],
+  expires: `}<span style={str}>"2026-09-01"</span>{`,
+}, { privateKey: keys.privateKey });
+
+checkScope(token, `}<span style={str}>"mychart.com"</span>{`, `}<span style={str}>"appointments:read"</span>{`);
+`}<span style={cmt}>{"// { allowed: true }"}</span>
+            </pre>
+          )}
         </div>
       </div>
     </Reveal>
@@ -244,7 +280,7 @@ function IntegrationSection() {
     { label: "Consumer AI", title: "ChatGPT, Claude, Gemini", desc: "One authorization document governs every connected service. A single dashboard instead of a trail of forgotten OAuth grants." },
     { label: "Coding agents", title: "Claude Code, Codex, Cursor", desc: "Scope your agent to this repo only. No touching ~/.ssh. Autonomous for writing code, require approval for deploying." },
     { label: "Autonomous agents", title: "OpenClaw, AutoGPT, CrewAI", desc: "Replace \"ask me before doing anything important\" with machine-enforceable authorization. The infrastructure polices — not the LLM." },
-    { label: "MCP servers", title: "Arcade.dev, connectors", desc: "MCP handles how to connect. APOA handles what the agent is allowed to do. Policy layer above the runtime." },
+    { label: "MCP servers", title: "Arcade.dev, connectors", desc: "MCP handles how to connect. APOA decides what the agent is allowed to do. Our adapter ships today." },
   ];
   return (
     <section style={{ paddingTop: 80, paddingBottom: 80 }}>
@@ -268,11 +304,6 @@ function IntegrationSection() {
               </div>
             ))}
           </div>
-        </Reveal>
-        <Reveal delay={0.15}>
-          <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--tertiary)", marginTop: 20, maxWidth: 560 }}>
-            Adoption starts bottom-up: agent frameworks first, then MCP servers, then consumer platforms. The ecosystem adopts the standard before the platforms need to.
-          </p>
         </Reveal>
       </div>
     </section>
@@ -333,6 +364,82 @@ function ScenariosSection() {
             7 fully worked scenarios →{" "}
             <a href="https://github.com/agenticpoa/apoa/blob/main/EXAMPLES.md" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 550 }}>EXAMPLES.md</a>
           </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function ShippedSection() {
+  const items = [
+    {
+      label: "SDKS",
+      title: "TypeScript and Python, same tokens",
+      desc: "Issue in one runtime, verify in the other. Cross-language fixture tests keep them from drifting apart.",
+      code: "await createToken({ principal, agent, services }, key)",
+      refs: [
+        { label: "npm @apoa/core", href: "https://www.npmjs.com/package/@apoa/core" },
+        { label: "pip apoa", href: "https://pypi.org/project/apoa/" },
+      ],
+    },
+    {
+      label: "PROTOCOL ADAPTERS",
+      title: "MCP and A2A, both wrapped",
+      desc: "Our MCP adapter gates tool calls on MCP servers as middleware or stdio proxy. Our A2A adapter attenuates permissions across agent-to-agent hops.",
+      code: "withAPOA(server, { key, mappings })",
+      refs: [
+        { label: "@apoa/mcp", href: "https://www.npmjs.com/package/@apoa/mcp" },
+        { label: "@apoa/a2a", href: "https://www.npmjs.com/package/@apoa/a2a" },
+      ],
+    },
+    {
+      label: "SIGNING",
+      title: "Your SSH key is your signature",
+      desc: "sign.agenticpoa.com — agent signs autonomously, you co-sign, or you draw your signature in a browser. Tamper-evident audit chain. No accounts.",
+      code: "ssh sign.agenticpoa.com sign --type git-commit",
+      refs: [
+        { label: "sshsign", href: "https://github.com/agenticpoa/sshsign" },
+      ],
+    },
+    {
+      label: "REFERENCE DEMOS",
+      title: "Two AI agents can already negotiate a SAFE",
+      desc: "A founder agent and an investor agent run a YC SAFE under enforced bounds. Every offer is logged. The signed PDF carries the audit trail.",
+      code: "python negotiate.py --role founder",
+      refs: [
+        { label: "negotiate", href: "https://github.com/agenticpoa/negotiate" },
+        { label: "claw-negotiate", href: "https://github.com/agenticpoa/claw-negotiate" },
+      ],
+    },
+  ];
+  return (
+    <section id="stack" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 32px" }}>
+        <Reveal>
+          <span style={{ fontSize: 13, fontWeight: 550, color: "var(--accent)", letterSpacing: "0.04em" }}>TODAY</span>
+          <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.025em", color: "var(--primary)", marginTop: 12, maxWidth: 560 }}>
+            The standard exists. So does the stack.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="responsive-grid-2" style={{
+            display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1,
+            marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden",
+          }}>
+            {items.map((item, i) => (
+              <div key={i} style={{ padding: "28px 28px", background: "var(--bg)" }}>
+                <span style={{ fontSize: 11, fontWeight: 600, color: "var(--accent)", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--mono)" }}>{item.label}</span>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--primary)", marginTop: 8, lineHeight: 1.3 }}>{item.title}</h3>
+                <p style={{ fontSize: 13, lineHeight: 1.65, color: "var(--tertiary)", marginTop: 8 }}>{item.desc}</p>
+                <div style={{ fontSize: 12, fontFamily: "var(--mono)", color: "var(--secondary)", padding: "10px 14px", background: "#f0ece4", borderRadius: 6, marginTop: 14, overflowX: "auto" }}>{item.code}</div>
+                <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+                  {item.refs.map(r => (
+                    <a key={r.label} href={r.href} target="_blank" rel="noopener noreferrer" className="ref-chip" style={{ fontSize: 11, fontFamily: "var(--mono)", color: "var(--tertiary)", padding: "3px 8px", borderRadius: 4, background: "#f0ece4", textDecoration: "none", transition: "background 0.15s ease, color 0.15s ease" }}>{r.label}</a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>
@@ -531,6 +638,8 @@ export default function App() {
         body, html { background: #fcf9f4 !important; }
         ::selection { background: #a35810; color: #fff; }
         html { scroll-behavior: smooth; }
+        section[id] { scroll-margin-top: 72px; }
+        .ref-chip:hover { background: #e8e0d2; color: var(--secondary); }
         @media (max-width: 768px) {
           .nav-links a:not(:last-child) { display: none !important; }
           .responsive-grid-4 { grid-template-columns: 1fr 1fr !important; }
@@ -548,6 +657,7 @@ export default function App() {
         <HowSection />
         <IntegrationSection />
         <ScenariosSection />
+        <ShippedSection />
         <VisionSection />
         <ComparisonSection />
         <CTASection />
