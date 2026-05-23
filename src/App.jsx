@@ -100,7 +100,7 @@ function Hero() {
           <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener noreferrer" style={{
             fontSize: 14, fontWeight: 550, color: "#fff", background: "var(--primary)",
             padding: "12px 24px", borderRadius: 8, textDecoration: "none",
-          }}>Read the spec</a>
+          }}>View on GitHub</a>
           <a href="#vision" style={{
             fontSize: 14, fontWeight: 550, color: "var(--primary)",
             padding: "12px 24px", borderRadius: 8, textDecoration: "none",
