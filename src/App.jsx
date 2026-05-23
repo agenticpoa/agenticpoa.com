@@ -97,7 +97,7 @@ function Hero() {
           Agentic Power of Attorney is the missing infrastructure — an open standard for formally delegating bounded authority to AI agents.
         </p>
         <div style={{ display: "flex", gap: 12, marginTop: 32, ...f(0.35) }}>
-          <a href="https://github.com/agenticpoa/apoa/blob/main/SPEC.md" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener noreferrer" style={{
             fontSize: 14, fontWeight: 550, color: "#fff", background: "var(--primary)",
             padding: "12px 24px", borderRadius: 8, textDecoration: "none",
           }}>Read the spec</a>
