@@ -51,7 +51,7 @@ function Nav() {
           <span style={{ fontFamily: "var(--serif)", fontSize: 16, fontWeight: 600, color: "var(--primary)", letterSpacing: "-0.01em" }}>Agentic POA</span>
         </a>
         <div className="nav-links" style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          {[["Spec", "#spec"], ["Examples", "#scenarios"], ["Stack", "#stack"], ["Vision", "#vision"]].map(([t, h]) => (
+          {[["Spec", "#spec"], ["Quickstart", "#quickstart"], ["Examples", "#scenarios"], ["Stack", "#stack"], ["Vision", "#vision"]].map(([t, h]) => (
             <a key={t} href={h} style={{ fontSize: 14, color: "var(--secondary)", textDecoration: "none", fontWeight: 450 }}>{t}</a>
           ))}
           <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener noreferrer" style={{
@@ -133,7 +133,7 @@ function CodeBlock() {
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
             <div style={{ marginLeft: 8, display: "flex", gap: 16 }}>
-              {["authorization.yaml", "typescript.ts"].map((name, i) => (
+              {["authorization.yaml", "quickstart.ts"].map((name, i) => (
                 <button key={i} onClick={() => setTab(i)} style={{
                   background: "transparent", border: "none", cursor: "pointer", padding: 0,
                   fontSize: 11, fontFamily: "var(--mono)",
@@ -163,28 +163,122 @@ function CodeBlock() {
             </pre>
           ) : (
             <pre style={preStyle}>
-{`import { createToken, checkScope, generateKeyPair } from `}<span style={str}>'@apoa/core'</span>{`;
+{`import { APOA, generateKeyPair } from `}<span style={str}>'@apoa/core'</span>{`;
 
 const keys = await generateKeyPair();
+const apoa = new APOA({ privateKey: keys.privateKey });
 
-const token = await createToken({
+const token = await apoa.tokens.createGrant({
   principal: { id: `}<span style={str}>"did:apoa:you"</span>{` },
   agent: { id: `}<span style={str}>"did:apoa:your-agent"</span>{`, name: `}<span style={str}>"Your AI Assistant"</span>{` },
-  services: [{
-    service: `}<span style={str}>"mychart.com"</span>{`,
-    scopes: [`}<span style={str}>"appointments:read"</span>{`],
-    accessMode: `}<span style={str}>"browser"</span>{`,
-  }],
-  expires: `}<span style={str}>"2026-09-01"</span>{`,
-}, { privateKey: keys.privateKey });
+  service: `}<span style={str}>"mychart.com"</span>{`,
+  scopes: [`}<span style={str}>"appointments:read"</span>{`],
+  accessMode: `}<span style={str}>"browser"</span>{`,
+  expiresIn: `}<span style={str}>"24h"</span>{`,
+});
 
-checkScope(token, `}<span style={str}>"mychart.com"</span>{`, `}<span style={str}>"appointments:read"</span>{`);
-`}<span style={cmt}>{"// { allowed: true }"}</span>
+await apoa.authorizations.check(token, `}<span style={str}>"mychart.com"</span>{`, `}<span style={str}>"appointments:read"</span>{`);
+`}<span style={cmt}>{"// { authorized: true }"}</span>
             </pre>
           )}
         </div>
       </div>
     </Reveal>
+  );
+}
+
+function QuickstartSection() {
+  const [tab, setTab] = useState(0);
+  const snippets = [
+`import { APOA, generateKeyPair } from '@apoa/core';
+
+const keys = await generateKeyPair();
+const apoa = new APOA({ privateKey: keys.privateKey });
+
+const token = await apoa.tokens.createGrant({
+  principal: "did:apoa:alex",
+  agent: { id: "did:apoa:docs-assistant", name: "Docs Assistant" },
+  service: "knowledge-base",
+  scopes: ["articles:search", "articles:summarize"],
+  constraints: { externalSharing: false },
+  expiresIn: "24h",
+});
+
+const result = await apoa.authorizations.check(
+  token,
+  "knowledge-base",
+  "articles:summarize",
+);
+
+// result.authorized === true`,
+`from apoa import APOA, generate_key_pair
+
+private_key, public_key = generate_key_pair()
+apoa = APOA(private_key=private_key)
+
+token = apoa.tokens.create_grant(
+    principal="did:apoa:alex",
+    agent="did:apoa:docs-assistant",
+    service="knowledge-base",
+    scopes=["articles:search", "articles:summarize"],
+    constraints={"external_sharing": False},
+    expires_in="24h",
+)
+
+result = apoa.authorizations.check(
+    token,
+    "knowledge-base",
+    "articles:summarize",
+)
+
+# result.authorized is True`,
+  ];
+  return (
+    <section id="quickstart" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 32px" }}>
+        <Reveal>
+          <span style={{ fontSize: 13, fontWeight: 550, color: "var(--accent)", letterSpacing: "0.04em" }}>QUICKSTART</span>
+          <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.025em", color: "var(--primary)", marginTop: 12, maxWidth: 600 }}>
+            Issue a scoped grant in a few lines.
+          </h2>
+          <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--secondary)", marginTop: 18, maxWidth: 620 }}>
+            Start with the application facade. It keeps signing, validation, and authorization checks behind one small API while preserving the underlying APOA protocol shape.
+          </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{
+            background: "#1c1917", borderRadius: 12, overflow: "hidden",
+            border: "1px solid #2a2520", marginTop: 36,
+          }}>
+            <div style={{ padding: "10px 16px", borderBottom: "1px solid #2a2520", display: "flex", alignItems: "center", gap: 14 }}>
+              {["TypeScript", "Python"].map((name, i) => (
+                <button key={name} onClick={() => setTab(i)} style={{
+                  background: "transparent", border: "none", cursor: "pointer", padding: 0,
+                  fontSize: 12, fontFamily: "var(--mono)",
+                  color: tab === i ? "#c4956a" : "#7a7068",
+                  transition: "color 0.15s ease",
+                }}>{name}</button>
+              ))}
+            </div>
+            <pre style={{
+              margin: 0, padding: "20px 24px", fontSize: 13, lineHeight: 1.75,
+              fontFamily: "var(--mono)", color: "#cfc6ba", overflowX: "auto",
+            }}>{snippets[tab]}</pre>
+          </div>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <div style={{ display: "flex", gap: 12, marginTop: 20, flexWrap: "wrap" }}>
+            {[
+              ["npm install @apoa/core", "https://www.npmjs.com/package/@apoa/core"],
+              ["pip install apoa", "https://pypi.org/project/apoa/"],
+              ["Runnable examples", "https://github.com/agenticpoa/apoa/tree/main/examples"],
+            ].map(([label, href]) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="ref-chip" style={{ fontSize: 12, fontFamily: "var(--mono)", color: "var(--tertiary)", padding: "6px 10px", borderRadius: 4, background: "#f0ece4", textDecoration: "none", transition: "background 0.15s ease, color 0.15s ease" }}>{label}</a>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
@@ -376,7 +470,7 @@ function ShippedSection() {
       label: "SDKS",
       title: "TypeScript and Python, same tokens",
       desc: "Issue in one runtime, verify in the other. Cross-language fixture tests keep them from drifting apart.",
-      code: "await createToken({ principal, agent, services }, key)",
+      code: "await apoa.tokens.createGrant({ principal, agent, service, scopes })",
       refs: [
         { label: "npm @apoa/core", href: "https://www.npmjs.com/package/@apoa/core" },
         { label: "pip apoa", href: "https://pypi.org/project/apoa/" },
@@ -386,7 +480,7 @@ function ShippedSection() {
       label: "PROTOCOL ADAPTERS",
       title: "MCP and A2A, both wrapped",
       desc: "Our MCP adapter gates tool calls on MCP servers as middleware or stdio proxy. Our A2A adapter attenuates permissions across agent-to-agent hops.",
-      code: "withAPOA(server, { key, mappings })",
+      code: "withAPOA(server, { token, publicKey, toolScopes })",
       refs: [
         { label: "@apoa/mcp", href: "https://www.npmjs.com/package/@apoa/mcp" },
         { label: "@apoa/a2a", href: "https://www.npmjs.com/package/@apoa/a2a" },
@@ -655,6 +749,7 @@ export default function App() {
         <CodeBlock />
         <ProblemSection />
         <HowSection />
+        <QuickstartSection />
         <IntegrationSection />
         <ScenariosSection />
         <ShippedSection />
