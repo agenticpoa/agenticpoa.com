@@ -37,8 +37,8 @@ function Nav() {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      borderBottom: scrolled ? "1px solid #e8e0d4" : "1px solid transparent",
-      background: scrolled ? "rgba(252,249,244,0.9)" : "transparent",
+      borderBottom: scrolled ? "1px solid #ddd8ca" : "1px solid transparent",
+      background: scrolled ? "rgba(252,249,244,0.92)" : "transparent",
       backdropFilter: scrolled ? "blur(12px)" : "none",
       transition: "all 0.3s ease",
     }}>
@@ -55,7 +55,7 @@ function Nav() {
             <a key={t} href={h} style={{ fontSize: 14, color: "var(--secondary)", textDecoration: "none", fontWeight: 450 }}>{t}</a>
           ))}
           <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener noreferrer" style={{
-            fontSize: 13, fontWeight: 550, color: "#fff", background: "var(--primary)",
+            fontSize: 13, fontWeight: 550, color: "#fffaf2", background: "var(--primary)",
             padding: "8px 16px", borderRadius: 6, textDecoration: "none",
           }}>GitHub</a>
         </div>
@@ -98,13 +98,13 @@ function Hero() {
         </p>
         <div style={{ display: "flex", gap: 12, marginTop: 32, ...f(0.35) }}>
           <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener noreferrer" style={{
-            fontSize: 14, fontWeight: 550, color: "#fff", background: "var(--primary)",
+            fontSize: 14, fontWeight: 550, color: "#fffaf2", background: "var(--primary)",
             padding: "12px 24px", borderRadius: 8, textDecoration: "none",
           }}>View on GitHub</a>
           <a href="#vision" style={{
             fontSize: 14, fontWeight: 550, color: "var(--primary)",
             padding: "12px 24px", borderRadius: 8, textDecoration: "none",
-            border: "1px solid #d4cdc0",
+            border: "1px solid #c9c7b5",
           }}>See the vision</a>
         </div>
       </div>
@@ -116,28 +116,28 @@ function CodeBlock() {
   const [tab, setTab] = useState(0);
   const preStyle = {
     margin: 0, padding: "20px 24px", fontSize: 13, lineHeight: 1.8,
-    fontFamily: "var(--mono)", color: "#a8a098", overflowX: "auto",
+    fontFamily: "var(--mono)", color: "#b8b6a2", overflowX: "auto",
   };
-  const str = { color: "#c4956a" };
-  const cmt = { color: "#5a5550" };
-  const bool = { color: "#8aab7a" };
+  const str = { color: "#b2ad79" };
+  const cmt = { color: "#787a64" };
+  const bool = { color: "#7c8d57" };
   return (
     <Reveal>
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 32px" }}>
         <div style={{
-          background: "#1c1917", borderRadius: 12, overflow: "hidden",
-          border: "1px solid #2a2520",
+          background: "#171b18", borderRadius: 12, overflow: "hidden",
+          border: "1px solid #2a2e27",
         }}>
-          <div style={{ padding: "10px 16px", borderBottom: "1px solid #2a2520", display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3a3530" }} />
+          <div style={{ padding: "10px 16px", borderBottom: "1px solid #2a2e27", display: "flex", alignItems: "center", gap: 6 }}>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3e4535" }} />
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3e4535" }} />
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3e4535" }} />
             <div style={{ marginLeft: 8, display: "flex", gap: 16 }}>
               {["authorization.yaml", "quickstart.ts"].map((name, i) => (
                 <button key={i} onClick={() => setTab(i)} style={{
                   background: "transparent", border: "none", cursor: "pointer", padding: 0,
                   fontSize: 11, fontFamily: "var(--mono)",
-                  color: tab === i ? "#c4956a" : "#7a7068",
+                  color: tab === i ? "#b2ad79" : "#85876f",
                   transition: "color 0.15s ease",
                 }}>{name}</button>
               ))}
@@ -247,22 +247,22 @@ result = apoa.authorizations.check(
         </Reveal>
         <Reveal delay={0.1}>
           <div style={{
-            background: "#1c1917", borderRadius: 12, overflow: "hidden",
-            border: "1px solid #2a2520", marginTop: 36,
+            background: "#171b18", borderRadius: 12, overflow: "hidden",
+            border: "1px solid #2a2e27", marginTop: 36,
           }}>
-            <div style={{ padding: "10px 16px", borderBottom: "1px solid #2a2520", display: "flex", alignItems: "center", gap: 14 }}>
+            <div style={{ padding: "10px 16px", borderBottom: "1px solid #2a2e27", display: "flex", alignItems: "center", gap: 14 }}>
               {["TypeScript", "Python"].map((name, i) => (
                 <button key={name} onClick={() => setTab(i)} style={{
                   background: "transparent", border: "none", cursor: "pointer", padding: 0,
                   fontSize: 12, fontFamily: "var(--mono)",
-                  color: tab === i ? "#c4956a" : "#7a7068",
+                  color: tab === i ? "#b2ad79" : "#85876f",
                   transition: "color 0.15s ease",
                 }}>{name}</button>
               ))}
             </div>
             <pre style={{
               margin: 0, padding: "20px 24px", fontSize: 13, lineHeight: 1.75,
-              fontFamily: "var(--mono)", color: "#cfc6ba", overflowX: "auto",
+              fontFamily: "var(--mono)", color: "#d7d3bd", overflowX: "auto",
             }}>{snippets[tab]}</pre>
           </div>
         </Reveal>
@@ -300,7 +300,7 @@ function ProblemSection() {
         <Reveal delay={0.1}>
           <div className="responsive-grid-4" style={{
             display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1,
-            marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden",
+            marginTop: 48, background: "#d9d4c4", borderRadius: 12, overflow: "hidden",
           }}>
             {[
               ["Share your password", "Hope the AI doesn't get phished, leak it, or hallucinate its way into your savings."],
@@ -330,7 +330,7 @@ function HowSection() {
             Built on standards that already exist.
           </h2>
         </Reveal>
-        <div className="responsive-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden" }}>
+        <div className="responsive-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, marginTop: 48, background: "#d9d4c4", borderRadius: 12, overflow: "hidden" }}>
           {[
             ["01", "Define authorization", "Scope, constraints, rules, expiration. What the agent can access and what it can't. A YAML file, not a 40-page legal document."],
             ["02", "Token is issued", "The authorization becomes a signed JWT — cryptographically verifiable, tamper-proof, portable. Optionally packaged as a W3C Verifiable Credential."],
@@ -344,7 +344,7 @@ function HowSection() {
           ))}
         </div>
         <Reveal delay={0.1}>
-          <div className="responsive-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, marginTop: 1, background: "#e0d9cc", borderRadius: "0 0 12px 12px", overflow: "hidden" }}>
+          <div className="responsive-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, marginTop: 1, background: "#d9d4c4", borderRadius: "0 0 12px 12px", overflow: "hidden" }}>
             {[
               ["API-based", "Extends OAuth 2.1 — the APOA token constrains scope, adds agent identity verification, delegation chain tracking, and audit."],
               ["Browser-based", "Secure credential injection for services without APIs. Encrypted vault → browser form. The AI model never touches your password."],
@@ -388,7 +388,7 @@ function IntegrationSection() {
         <Reveal delay={0.1}>
           <div className="responsive-grid-2" style={{
             display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1,
-            marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden",
+            marginTop: 48, background: "#d9d4c4", borderRadius: 12, overflow: "hidden",
           }}>
             {items.map((item, i) => (
               <div key={i} style={{ padding: "28px 28px", background: "var(--bg)" }}>
@@ -430,16 +430,16 @@ function ScenariosSection() {
               <button key={i} onClick={() => setActive(i)} style={{
                 padding: "8px 16px", borderRadius: 6, fontSize: 13, fontWeight: 550,
                 border: "1px solid", cursor: "pointer", fontFamily: "var(--sans)",
-                borderColor: active === i ? "var(--primary)" : "#d4cdc0",
+                borderColor: active === i ? "var(--primary)" : "#c9c7b5",
                 background: active === i ? "var(--primary)" : "transparent",
-                color: active === i ? "#fff" : "var(--secondary)",
+                color: active === i ? "#fffaf2" : "var(--secondary)",
                 transition: "all 0.2s ease",
               }}>{item.title}</button>
             ))}
           </div>
           <div key={active} style={{
             marginTop: 20, padding: "32px", borderRadius: 12,
-            border: "1px solid #e0d9cc", background: "#faf8f4",
+            border: "1px solid #d9d4c4", background: "#fbf8f1",
           }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
               <h3 style={{ fontSize: 22, fontWeight: 600, color: "var(--primary)", fontFamily: "var(--serif)", letterSpacing: "-0.01em" }}>{s.title}</h3>
@@ -518,7 +518,7 @@ function ShippedSection() {
         <Reveal delay={0.1}>
           <div className="responsive-grid-2" style={{
             display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 1,
-            marginTop: 48, background: "#e0d9cc", borderRadius: 12, overflow: "hidden",
+            marginTop: 48, background: "#d9d4c4", borderRadius: 12, overflow: "hidden",
           }}>
             {items.map((item, i) => (
               <div key={i} style={{ padding: "28px 28px", background: "var(--bg)" }}>
@@ -566,13 +566,13 @@ function VisionSection() {
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0, width: 20 }}>
                   <div style={{
                     width: 10, height: 10, borderRadius: "50%", marginTop: 6, flexShrink: 0,
-                    background: step.active ? "var(--accent)" : step.highlight ? "#c44" : "var(--bg)",
-                    border: step.active ? "2px solid var(--accent)" : step.highlight ? "2px solid #c44" : "2px solid #c4bdb0",
+                    background: step.active ? "var(--accent)" : step.highlight ? "#9b4d45" : "var(--bg)",
+                    border: step.active ? "2px solid var(--accent)" : step.highlight ? "2px solid #9b4d45" : "2px solid #aaa98d",
                   }} />
-                  {i < 2 && <div style={{ width: 1, flex: 1, background: "#d4cdc0" }} />}
+                  {i < 2 && <div style={{ width: 1, flex: 1, background: "#c9c7b5" }} />}
                 </div>
                 <div style={{ paddingBottom: i < 2 ? 32 : 0 }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: step.active ? "var(--accent)" : step.highlight ? "#c44" : "var(--tertiary)", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--mono)" }}>{step.label}</span>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: step.active ? "var(--accent)" : step.highlight ? "#9b4d45" : "var(--tertiary)", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "var(--mono)" }}>{step.label}</span>
                   <h3 style={{ fontSize: 18, fontWeight: 600, color: "var(--primary)", marginTop: 4, lineHeight: 1.3 }}>{step.title}</h3>
                   <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--secondary)", marginTop: 6, maxWidth: 480 }}>{step.desc}</p>
                 </div>
@@ -583,7 +583,7 @@ function VisionSection() {
         <Reveal delay={0.2}>
           <p style={{
             fontSize: 15, lineHeight: 1.75, color: "var(--secondary)", marginTop: 48,
-            maxWidth: 560, paddingTop: 32, borderTop: "1px solid #e0d9cc",
+            maxWidth: 560, paddingTop: 32, borderTop: "1px solid #d9d4c4",
           }}>
             The technical roadmap for high-authority delegation — legal POA pairing, tiered confirmation thresholds, co-principal authorization — is in{" "}
             <a href="https://github.com/agenticpoa/apoa/blob/main/SPEC.md#appendix-d-future-work" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 550 }}>Appendix D of the Spec</a>.
@@ -615,7 +615,7 @@ function ComparisonSection() {
           <div style={{ marginTop: 36, overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
               <thead>
-                <tr style={{ borderBottom: "2px solid #e0d9cc" }}>
+                <tr style={{ borderBottom: "2px solid #d9d4c4" }}>
                   <th style={{ textAlign: "left", padding: "12px 0", fontSize: 12, fontWeight: 600, color: "var(--tertiary)", letterSpacing: "0.04em", textTransform: "uppercase" }}>Feature</th>
                   {cols.map(c => (
                     <th key={c.name} style={{ textAlign: "center", padding: "12px 16px", fontSize: 12, fontWeight: 600, color: c.name === "APOA" ? "var(--accent)" : "var(--tertiary)", letterSpacing: "0.04em", textTransform: "uppercase" }}>{c.name}</th>
@@ -624,13 +624,13 @@ function ComparisonSection() {
               </thead>
               <tbody>
                 {features.map((f, i) => (
-                  <tr key={f} style={{ borderBottom: "1px solid #ece6db" }}>
+                  <tr key={f} style={{ borderBottom: "1px solid #e8e1d4" }}>
                     <td style={{ padding: "12px 0", color: "var(--secondary)", fontWeight: 450 }}>{f}</td>
                     {cols.map(c => (
                       <td key={c.name} style={{ textAlign: "center", padding: "12px 16px", fontSize: 15 }}>
                         {c.vals[i]
                           ? <span style={{ color: "#4a7c59" }}>✓</span>
-                          : <span style={{ color: "#c4a088", opacity: 0.6 }}>—</span>}
+                          : <span style={{ color: "#b1a67f", opacity: 0.6 }}>—</span>}
                       </td>
                     ))}
                   </tr>
@@ -649,7 +649,7 @@ function CTASection() {
     <section style={{ paddingTop: 80, paddingBottom: 60 }}>
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 32px" }}>
         <Reveal>
-          <div style={{ borderTop: "1px solid #e0d9cc", paddingTop: 80, maxWidth: 520 }}>
+          <div style={{ borderTop: "1px solid #d9d4c4", paddingTop: 80, maxWidth: 520 }}>
             <span style={{ fontSize: 13, fontWeight: 550, color: "var(--accent)", letterSpacing: "0.04em" }}>OPEN STANDARD</span>
             <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 400, lineHeight: 1.12, letterSpacing: "-0.025em", color: "var(--primary)", marginTop: 12 }}>
               Built in the open.
@@ -681,13 +681,13 @@ function Footer() {
       <div style={{ maxWidth: 1080, margin: "0 auto", padding: "0 32px" }}>
         <div style={{
           padding: "14px 20px", borderRadius: 8, marginBottom: 48,
-          background: "#faf4ec", border: "1px solid #e8dfd2",
+          background: "#f5f1e8", border: "1px solid #ddd8ca",
           fontSize: 13, lineHeight: 1.6, color: "var(--tertiary)",
         }}>
           <strong style={{ color: "var(--secondary)" }}>No tokens. No coins. No NFTs.</strong>{" "}
           The only "token" here is a signed JWT. If someone is selling you an "APOA token," it's a scam.
         </div>
-        <div style={{ borderTop: "1px solid #e0d9cc", paddingTop: 32, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24 }}>
+        <div style={{ borderTop: "1px solid #d9d4c4", paddingTop: 32, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
               <span style={{ fontSize: 16 }}>🐴</span>
@@ -703,7 +703,7 @@ function Footer() {
             ))}
           </div>
         </div>
-        <p style={{ fontSize: 11, color: "#c4bdb0", marginTop: 24 }}>Apache 2.0 · agenticpoa.com · agenticpowerofattorney.com</p>
+        <p style={{ fontSize: 11, color: "#aaa98d", marginTop: 24 }}>Apache 2.0 · agenticpoa.com · agenticpowerofattorney.com</p>
       </div>
     </footer>
   );
@@ -712,7 +712,7 @@ function Footer() {
 export default function App() {
   return (
     <div style={{
-      background: "#fcf9f4", color: "#1a1714",
+      background: "#fcf9f4", color: "#151b21",
       fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
       WebkitFontSmoothing: "antialiased", minHeight: "100vh",
     }}>
@@ -723,17 +723,17 @@ export default function App() {
           --sans: 'DM Sans', -apple-system, sans-serif;
           --mono: 'JetBrains Mono', monospace;
           --bg: #fcf9f4;
-          --primary: #1a1714;
-          --secondary: #5c564c;
-          --tertiary: #918980;
-          --accent: #a35810;
+          --primary: #151b21;
+          --secondary: #3f4644;
+          --tertiary: #737762;
+          --accent: #6f7448;
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; }
         body, html { background: #fcf9f4 !important; }
-        ::selection { background: #a35810; color: #fff; }
+        ::selection { background: #6f7448; color: #fffaf2; }
         html { scroll-behavior: smooth; }
         section[id] { scroll-margin-top: 72px; }
-        .ref-chip:hover { background: #e8e0d2; color: var(--secondary); }
+        .ref-chip:hover { background: #e4dfd2; color: var(--secondary); }
         @media (max-width: 768px) {
           .nav-links a:not(:last-child) { display: none !important; }
           .responsive-grid-4 { grid-template-columns: 1fr 1fr !important; }
