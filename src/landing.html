@@ -1,0 +1,387 @@
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#top">
+    <span class="mark">APOA</span>
+    <span class="sub">Agentic Power of Attorney</span>
+  </a>
+  <div class="nav-links">
+    <a class="lnk" href="#what">What it is</a>
+    <a class="lnk" href="#grant">The grant</a>
+    <a class="lnk" href="#how">How it works</a>
+    <a class="lnk" href="#compare">Why not OAuth</a>
+    <a class="lnk" href="#uses">Use cases</a>
+    <a class="btn btn-primary" href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <canvas id="constellation"></canvas>
+  <img class="hero-horse" src="/assets/horse.png" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="hero-col-text">
+      <span class="draft-tag"><span class="dot"></span> Open standard · v0.1 draft</span>
+      <h1 data-hero-h1>Give agents<br>authority.<br><span class="em">Keep control.</span></h1>
+      <p class="lede" data-hero-lede>APOA is an open standard for delegating <b>bounded authority</b> to AI agents — scoped permissions, cryptographic proof, full audit trails, and instant revocation.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub
+        </a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/agenticpoa/apoa/blob/main/SPEC.md" target="_blank" rel="noopener">Read the spec →</a>
+      </div>
+      <div class="hero-meta">
+        <span><b>Apache 2.0</b> licensed</span>
+        <span><b>JSON</b> + JWT profile</span>
+        <span>Built <b>in the open</b></span>
+      </div>
+    </div>
+    <div class="hero-col-img">
+      <img class="hero-seal" src="/assets/horse.png" alt="" aria-hidden="true">
+      <div class="codecard" data-hero-card>
+        <div class="bar">
+          <span class="dot" style="background:#e0686a"></span>
+          <span class="dot" style="background:#e6b95c"></span>
+          <span class="dot" style="background:#7fae6f"></span>
+          <span class="fn">grant.apoa.json</span>
+          <span class="badge">SIGNED</span>
+        </div>
+        <pre><code><span class="ln"><span class="tk-punc">{</span></span><span class="ln">  <span class="tk-key">"principal"</span><span class="tk-punc">:</span> <span class="tk-str">"did:web:acme.com"</span><span class="tk-punc">,</span></span><span class="ln">  <span class="tk-key">"agent"</span><span class="tk-punc">:</span> <span class="tk-str">"did:key:z6Mk…ag3nt"</span><span class="tk-punc">,</span></span><span class="ln">  <span class="tk-key">"scope"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span><span class="tk-str">"deployments:create"</span><span class="tk-punc">],</span></span><span class="ln">  <span class="tk-key">"limits"</span><span class="tk-punc">:</span> <span class="tk-punc">{</span> <span class="tk-key">"env"</span><span class="tk-punc">:</span> <span class="tk-str">"staging"</span><span class="tk-punc">,</span> <span class="tk-key">"repo"</span><span class="tk-punc">:</span> <span class="tk-str">"api"</span> <span class="tk-punc">},</span></span><span class="ln">  <span class="tk-key">"expires"</span><span class="tk-punc">:</span> <span class="tk-str">"2026-07-01T00:00Z"</span><span class="tk-punc">,</span></span><span class="ln">  <span class="tk-key">"revocable"</span><span class="tk-punc">:</span> <span class="tk-bool">true</span></span><span class="ln"><span class="tk-punc">}</span></span></code></pre>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PRINCIPLE STRIP ============ -->
+<section class="strip">
+  <div class="wrap">
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6l-8-4Z"/></svg> Scoped, not all-or-nothing</div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Every action logged</div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6 6 18M6 6l12 12"/></svg> Revoke in one call</div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg> Cryptographically verifiable</div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="section problem" id="problem">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">The gap</span>
+      <p class="lede" data-reveal>AI agents are already acting on your behalf — deploying, triaging, messaging, updating records. They're doing it with <em>borrowed credentials and implicit trust.</em></p>
+    </div>
+    <div class="problem-grid">
+      <div class="cell" data-reveal data-d="1">
+        <div class="n">01</div>
+        <h4>Shared secrets</h4>
+        <p>Agents run on copied API keys and session cookies — credentials that grant everything the human can do, with no notion of "just this much."</p>
+      </div>
+      <div class="cell" data-reveal data-d="2">
+        <div class="n">02</div>
+        <h4>No paper trail</h4>
+        <p>When an agent acts, there's rarely a verifiable record of who authorized what, under which limits, or when that mandate expired.</p>
+      </div>
+      <div class="cell" data-reveal data-d="3">
+        <div class="n">03</div>
+        <h4>No off switch</h4>
+        <p>Pulling authority back means rotating keys across every system — slow, lossy, and impossible to do precisely for one agent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT IT IS / ANATOMY ============ -->
+<section class="section anatomy" id="what">
+  <span id="grant"></span>
+  <div class="wrap">
+    <div class="anatomy-side">
+      <span class="eyebrow">The grant</span>
+      <h2 style="font-size:clamp(28px,3.8vw,44px);line-height:1.05;margin:18px 0 0;">A power of<br>attorney, written<br>for machines.</h2>
+      <p style="color:var(--ink-2);margin:22px 0 0;font-size:17px;">An APOA grant is a signed document where a <b>principal</b> delegates a narrow, time-bound mandate to an <b>agent</b>. Human-readable, machine-verifiable, and built from primitives you already trust.</p>
+      <div class="field-list" id="fieldList">
+        <button data-line="1" class="active"><span class="ft">principal</span><span class="fd">Who is delegating — an identity (DID, domain, or org) that can be cryptographically resolved.</span></button>
+        <button data-line="2"><span class="ft">agent</span><span class="fd">The holder of this authority. Its key signs every request it makes under the grant.</span></button>
+        <button data-line="3"><span class="ft">scope</span><span class="fd">The exact capabilities granted — named, namespaced actions. Nothing outside this list is permitted.</span></button>
+        <button data-line="4"><span class="ft">limits</span><span class="fd">Quantitative and contextual bounds: rate limits, environments, repositories, data classes.</span></button>
+        <button data-line="5"><span class="ft">expires</span><span class="fd">A hard expiry. Authority lapses automatically — no cleanup required.</span></button>
+        <button data-line="6"><span class="ft">revocable</span><span class="fd">Whether the principal can invalidate the grant instantly via a revocation endpoint.</span></button>
+      </div>
+    </div>
+    <div class="anatomy-main">
+      <div class="codecard codecard-big">
+        <div class="bar">
+          <span class="dot" style="background:#e0686a"></span>
+          <span class="dot" style="background:#e6b95c"></span>
+          <span class="dot" style="background:#7fae6f"></span>
+          <span class="fn">grant.apoa.json</span>
+          <span class="badge">ed25519</span>
+        </div>
+        <pre id="anatomyCode"><code><span class="ln" data-l="0"><span class="tk-punc">{</span></span><span class="ln" data-l="1">  <span class="tk-key">"principal"</span><span class="tk-punc">:</span> <span class="tk-str">"did:web:acme.com"</span><span class="tk-punc">,</span></span><span class="ln" data-l="2">  <span class="tk-key">"agent"</span><span class="tk-punc">:</span>     <span class="tk-str">"did:key:z6MktR…a91k"</span><span class="tk-punc">,</span></span><span class="ln" data-l="3">  <span class="tk-key">"scope"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span><span class="tk-str">"deployments:create"</span><span class="tk-punc">,</span> <span class="tk-str">"logs:read"</span><span class="tk-punc">],</span></span><span class="ln" data-l="4">  <span class="tk-key">"limits"</span><span class="tk-punc">:</span> <span class="tk-punc">{</span></span><span class="ln" data-l="4">    <span class="tk-key">"environment"</span><span class="tk-punc">:</span> <span class="tk-str">"staging"</span><span class="tk-punc">,</span> <span class="tk-key">"max_changes"</span><span class="tk-punc">:</span> <span class="tk-num">10</span><span class="tk-punc">,</span></span><span class="ln" data-l="4">    <span class="tk-key">"repositories"</span><span class="tk-punc">:</span> <span class="tk-punc">[</span><span class="tk-str">"acme/api"</span><span class="tk-punc">]</span><span class="tk-punc">,</span> <span class="tk-key">"production"</span><span class="tk-punc">:</span> <span class="tk-bool">false</span></span><span class="ln" data-l="4">  <span class="tk-punc">},</span></span><span class="ln" data-l="5">  <span class="tk-key">"issued"</span><span class="tk-punc">:</span>  <span class="tk-str">"2026-06-01T09:00:00Z"</span><span class="tk-punc">,</span></span><span class="ln" data-l="5">  <span class="tk-key">"expires"</span><span class="tk-punc">:</span> <span class="tk-str">"2026-07-01T00:00:00Z"</span><span class="tk-punc">,</span></span><span class="ln" data-l="6">  <span class="tk-key">"revocable"</span><span class="tk-punc">:</span> <span class="tk-bool">true</span><span class="tk-punc">,</span></span><span class="ln" data-l="6">  <span class="tk-key">"revocation"</span><span class="tk-punc">:</span> <span class="tk-str">"https://acme.com/apoa/revoke"</span></span><span class="ln" data-l="0"><span class="tk-punc">}</span></span><span class="ln" data-l="0">  <span class="tk-cmt">// + detached ed25519 signature</span></span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section flow" id="how">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">The handshake</span>
+      <h2>Four steps from intent to action.</h2>
+      <p>A grant flows from principal to agent to verifier — and only then to the world. Every hop is checkable on its own.</p>
+    </div>
+    <div class="flow-track" id="flowTrack">
+      <div class="flow-line"><div class="prog" id="flowProg"></div></div>
+      <div class="flow-step" data-step="0">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 21h14"/></svg></div>
+        <div class="role">Principal</div>
+        <h4>Issue</h4>
+        <p>You define a scope and sign a grant for a specific agent.</p>
+      </div>
+      <div class="flow-step" data-step="1">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+        <div class="role">Agent</div>
+        <h4>Present</h4>
+        <p>The agent attaches the grant when it makes a request.</p>
+      </div>
+      <div class="flow-step" data-step="2">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+        <div class="role">Verifier</div>
+        <h4>Check</h4>
+        <p>The service validates signature, scope, limits, expiry, revocation.</p>
+      </div>
+      <div class="flow-step" data-step="3">
+        <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m4 13 5 5L20 6"/></svg></div>
+        <div class="role">Ledger</div>
+        <h4>Execute &amp; log</h4>
+        <p>If valid, the action runs — and is recorded against the grant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPABILITIES ============ -->
+<section class="section caps" id="caps">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">Capabilities</span>
+      <h2>What the standard guarantees.</h2>
+    </div>
+    <div class="caps-grid">
+      <div class="cap">
+        <span class="idx">01</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 8 8 8 8s8-3 8-8V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h4>Scoped permissions</h4>
+        <p>Authority is a list of named actions with limits — never a blanket "act as me." Least privilege by construction.</p>
+      </div>
+      <div class="cap">
+        <span class="idx">02</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <h4>Cryptographic proof</h4>
+        <p>Grants are signed by the principal; every agent request is signed by the agent. No bearer-secret theft.</p>
+      </div>
+      <div class="cap">
+        <span class="idx">03</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h16M4 10h16M4 15h11M4 20h7"/></svg>
+        <h4>Full audit trail</h4>
+        <p>Each action ties back to a grant ID, a scope entry, and a timestamp. Reconstruct exactly what happened.</p>
+      </div>
+      <div class="cap">
+        <span class="idx">04</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M16 8 8 16M8 8l8 8"/></svg>
+        <h4>Instant revocation</h4>
+        <p>Hit the revocation endpoint and the grant dies everywhere that checks it — no key rotation, no blast radius.</p>
+      </div>
+      <div class="cap">
+        <span class="idx">05</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h4>Time &amp; context bounds</h4>
+        <p>Hard expiry plus quantitative and contextual caps — rate, environment, repository — enforced before the action, not after.</p>
+      </div>
+      <div class="cap">
+        <span class="idx">06</span>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7V5a1 1 0 0 1 1-1h2M20 7V5a1 1 0 0 0-1-1h-2M4 17v2a1 1 0 0 0 1 1h2M20 17v2a1 1 0 0 1-1 1h-2"/><path d="M8 12h8"/></svg>
+        <h4>Built on open primitives</h4>
+        <p>JSON, JWT, DIDs, ed25519 — a profile over standards you already run. No new trust root to adopt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="section compare" id="compare">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">Why a new standard</span>
+      <h2>OAuth was built for apps. Agents are different.</h2>
+      <p>Existing auth assumes a human at the end of the flow and a long-lived relationship. Agents are ephemeral, numerous, and act unattended — they need delegation as a first-class object.</p>
+    </div>
+    <table class="ctable">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>API keys</th>
+          <th>OAuth scopes</th>
+          <th class="apoa">APOA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Granularity</th>
+          <td class="muted">All-or-nothing</td>
+          <td class="muted">Coarse scopes</td>
+          <td class="apoa col-apoa">Per-action + limits</td>
+        </tr>
+        <tr>
+          <th>Bounded actions</th>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="apoa col-apoa"><span class="chk">✓</span> Rate &amp; context caps</td>
+        </tr>
+        <tr>
+          <th>Per-request proof</th>
+          <td class="muted">Bearer secret</td>
+          <td class="muted">Bearer token</td>
+          <td class="apoa col-apoa"><span class="chk">✓</span> Signed by agent</td>
+        </tr>
+        <tr>
+          <th>Audit by mandate</th>
+          <td class="muted">Logs only</td>
+          <td class="muted">Logs only</td>
+          <td class="apoa col-apoa"><span class="chk">✓</span> Tied to a grant</td>
+        </tr>
+        <tr>
+          <th>Instant revoke</th>
+          <td class="muted">Rotate key</td>
+          <td class="muted">Token revoke</td>
+          <td class="apoa col-apoa"><span class="chk">✓</span> Per-grant, precise</td>
+        </tr>
+        <tr>
+          <th>Delegation chains</th>
+          <td class="muted">—</td>
+          <td class="muted">—</td>
+          <td class="apoa col-apoa"><span class="chk">✓</span> Agent → sub-agent</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ USE CASES ============ -->
+<section class="section uses" id="uses">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">In practice</span>
+      <h2>Where a mandate matters.</h2>
+    </div>
+    <div class="uc-grid">
+      <div class="uc" data-reveal>
+        <span class="tag">Engineering</span>
+        <h4>Release automation</h4>
+        <p>Let a release agent deploy to staging, roll back failing builds, and never touch production.</p>
+        <div class="scope"><span>deploy:staging</span><span>rollback:staging</span><span>no prod</span></div>
+      </div>
+      <div class="uc" data-reveal data-d="1">
+        <span class="tag">Operations</span>
+        <h4>Incident response</h4>
+        <p>A diagnostic agent reads logs, opens incidents, and restarts approved workers without secrets.</p>
+        <div class="scope"><span>logs:read</span><span>incidents:create</span><span>restart:approved</span></div>
+      </div>
+      <div class="uc" data-reveal data-d="2">
+        <span class="tag">Personal</span>
+        <h4>Scheduling &amp; inbox</h4>
+        <p>An assistant books meetings and replies to known contacts, never sends to new recipients.</p>
+        <div class="scope"><span>calendar:write</span><span>mail:reply</span><span>known only</span></div>
+      </div>
+      <div class="uc" data-reveal>
+        <span class="tag">Governance</span>
+        <h4>Access reviews</h4>
+        <p>A review agent reads policy docs and opens change requests, but cannot merge or approve.</p>
+        <div class="scope"><span>docs:read</span><span>prs:create</span><span>no merge</span></div>
+      </div>
+      <div class="uc" data-reveal data-d="1">
+        <span class="tag">Support</span>
+        <h4>Customer service</h4>
+        <p>A support agent triages tickets, drafts replies, and updates status — no account deletions.</p>
+        <div class="scope"><span>tickets:triage</span><span>reply:draft</span><span>no delete</span></div>
+      </div>
+      <div class="uc" data-reveal data-d="2">
+        <span class="tag">Research</span>
+        <h4>Data &amp; tooling</h4>
+        <p>A research agent queries read-only datasets and calls approved internal tools within a rate limit.</p>
+        <div class="scope"><span>data:read</span><span>tools:call</span><span>100/hr</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GET INVOLVED ============ -->
+<section class="section involve" id="involve">
+  <img class="horse-bg" src="/assets/horse.png" alt="" aria-hidden="true">
+  <div class="wrap">
+    <span class="eyebrow">Get involved</span>
+    <h2>An open standard is only as good as who shapes it.</h2>
+    <p>APOA is Apache 2.0 licensed and developed in the open. Read the spec, file an issue, propose a profile, or build a verifier. Early implementers are defining v1.</p>
+    <div class="hero-cta">
+      <a class="btn btn-olive btn-lg" href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        View on GitHub
+      </a>
+      <a class="btn btn-ghost btn-lg" href="https://github.com/agenticpoa/apoa/blob/main/SPEC.md" target="_blank" rel="noopener">Read the spec</a>
+    </div>
+    <div class="repo">
+      <a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        agenticpoa / apoa
+      </a>
+      <a class="stars" href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener">★ Star</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <div class="mark">APOA</div>
+      <p class="blurb">Agentic Power of Attorney — an open authorization standard for the age of autonomous agents.</p>
+    </div>
+    <div>
+      <h5>Spec</h5>
+      <ul>
+        <li><a href="#grant">The grant</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#caps">Capabilities</a></li>
+        <li><a href="#compare">Why not OAuth</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="https://github.com/agenticpoa/apoa" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://github.com/agenticpoa/apoa/tree/main/sdks" target="_blank" rel="noopener">Reference impl</a></li>
+        <li><a href="#uses">Use cases</a></li>
+        <li><a href="https://github.com/agenticpoa/apoa/discussions" target="_blank" rel="noopener">RFC discussions</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Community</h5>
+      <ul>
+        <li><a href="https://github.com/agenticpoa/apoa/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a></li>
+        <li><a href="https://github.com/agenticpoa/apoa/issues" target="_blank" rel="noopener">Issues</a></li>
+        <li><a href="https://github.com/agenticpoa/apoa/discussions" target="_blank" rel="noopener">Working group</a></li>
+        <li><a href="https://github.com/agenticpoa/apoa/discussions" target="_blank" rel="noopener">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <div class="wrap">
+      <span>© 2026 APOA — Apache 2.0 licensed</span>
+      <span>v0.1 draft · built in the open</span>
+    </div>
+  </div>
+</footer>
